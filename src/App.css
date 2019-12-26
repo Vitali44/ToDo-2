@@ -1,0 +1,87 @@
+body {
+    background-color: #aca3c2;
+}
+
+#root {
+    background-color: #c6d2d8;
+    min-height: 500px;
+    width: 500px;
+    margin: auto;
+}
+
+.App {
+    margin: 40px auto 20px;
+}
+
+#title {
+    position: center;
+    margin: 120px;
+    font-size: 30px
+}
+
+#form {
+    margin: 40px 40px;
+    display: block;
+    align-items: center;
+}
+
+#input-form {
+    border: 0;
+    color: rgb(43, 15, 15);
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+    padding: 0 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+
+#btn-add {
+    background-color: #30c0b9;
+    height: 50px;
+    width: 80px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.list {
+    background-color: #30c0b9;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.inputTask {
+    background-color: transparent;
+    width: 350px;
+    border: 0;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;    
+}
+
+.inputTask:placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.inputTask:focus {
+    outline: none;
+}
+
+#btn-delete {
+    height: 20px;
+    width: 40px;
+    border-radius: 3px;
+    margin: 10px;
+    border: 0;
+    background-color: rgb(226, 78, 78);
+    border-radius: 3px;
+}
