@@ -1,10 +1,8 @@
 import React from "react";
 import { Component } from "react";
 import "./App.css";
-
 import { connect } from "react-redux";
-import {addItemAction} from "../action/actions";
-import addItemReducer from "../reducers/addItem";
+import { addItemAction } from "./action/actions";
 
 class App extends Component {
   constructor(props) {
@@ -12,14 +10,15 @@ class App extends Component {
 
     this.state = {
       newItem: "",
-      list: [],
+      list: []
     };
   }
 
   updateInput = event => {
     this.setState({
-      newItem: event.target.value});
-  }
+      newItem: event.target.value
+    });
+  };
 
   deleteItem = id => {
     const list = [...this.state.list];
@@ -34,27 +33,27 @@ class App extends Component {
       if (item.id === id) {
         return {
           ...item,
-          value,
+          value
         };
       }
       return item;
     });
 
     this.setState({
-      list: updatedList,
+      list: updatedList
     });
   };
 
   addItem = () => {
     const newItem = {
       id: 1 + Math.random(),
-      value: this.state.newItem,
+      value: this.state.newItem
     };
     console.log(newItem);
-    
+
     this.setState(prevState => ({
       list: [...prevState.list, newItem],
-      newItem: '',
+      newItem: ""
     }));
   };
 
@@ -68,8 +67,9 @@ class App extends Component {
             id="input-form"
             type="text"
             placeholder="Enter task"
-            value={this.state.newItem} 
-            onChange={this.updateInput} />
+            value={this.state.newItem}
+            onChange={this.updateInput}
+          />
           <button id="btn-add" onClick={this.addItem}>
             Add Task
           </button>
@@ -77,24 +77,23 @@ class App extends Component {
           <ul>
             {this.state.list.map(item => {
               return (
-                <li key={item.id}>
-                  <div className="list">
-                    <input
-                      className="inputTask"
-                      type="text"
-                      id={item.id}
-                      value={item.value}
-                      onChange={e => {
-                        this.editItem(e.target.value, item.id);
-                      }}/>
-                    <button
-                      id="btn-delete"
-                      onClick={() => this.deleteItem(item.id)}
-                    >
-                      X
-                    </button>
-                  </div>
-                </li>
+                <div key={item.id} className="list">
+                  <input
+                    className="inputTask"
+                    type="text"
+                    id={item.id}
+                    value={item.value}
+                    onChange={e => {
+                      this.editItem(e.target.value, item.id);
+                    }}
+                  />
+                  <button
+                    id="btn-delete"
+                    onClick={() => this.deleteItem(item.id)}
+                  >
+                    X
+                  </button>
+                </div>
               );
             })}
           </ul>
@@ -104,4 +103,16 @@ class App extends Component {
   }
 }
 
-export default connect() (App);
+const mapDispatchToProps = dispatch => ({
+  addItemAction: item => {
+    dispatch(addItemAction(item));
+  }
+});
+
+const mapStateToProps = state => {
+  return {
+    id: state
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
