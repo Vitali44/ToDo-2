@@ -1,5 +1,6 @@
 body {
-    background-color: #aca3c2;
+    background-color: rgb(17, 17, 17);
+    padding-top: 20px;
 }
 
 #root {
@@ -7,20 +8,23 @@ body {
     min-height: 500px;
     width: 500px;
     margin: auto;
+    border-radius: 15px;
+    padding: 5px;
 }
 
 .App {
-    margin: 40px auto 20px;
+    margin: 20px auto;
 }
 
 #title {
-    position: center;
     margin: 120px;
-    font-size: 30px
+    align-items: center;
+    font-size: 40px;
+    width: 460px;
 }
 
 #form {
-    margin: 40px 40px;
+    margin: 20px;
     display: block;
     align-items: center;
 }
@@ -28,35 +32,42 @@ body {
 #input-form {
     border: 0;
     color: rgb(43, 15, 15);
-    width: 200px;
+    width: 280px;
     height: 50px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 0 20px;
     font-size: 18px;
-    border-radius: 10px;
-    margin-left: 40px;
+    border-radius: 5px;
     margin-right: 40px;
 }
 
-
+#input-form:focus {
+    outline: none;
+}
 
 #btn-add {
     background-color: #30c0b9;
     height: 50px;
-    width: 80px;
+    width: 100px;
     font-size: 16px;
     border-radius: 5px;
-    border: 0;
+    border: .5;
     cursor: pointer;
 }
 
+#btn-add:focus {
+    outline: none;
+}
+
 .list {
-    background-color: #30c0b9;
-    height: 40px;
+    background-color: #4a94be;
+    height: 45px;
     display: flex;
     justify-content: space-between;
     border-radius: 5px;
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .inputTask {
@@ -77,11 +88,14 @@ body {
 }
 
 #btn-delete {
-    height: 20px;
+    height: 25px;
     width: 40px;
     border-radius: 3px;
     margin: 10px;
-    border: 0;
+    border: 0.5;
+    border-color: rgb(255, 163, 127);
     background-color: rgb(226, 78, 78);
     border-radius: 3px;
+
 }
+

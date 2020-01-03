@@ -2,7 +2,11 @@ import React from "react";
 import { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { addItemAction } from "./action/actions";
+import {
+  addItemAction,
+  removeItemAction,
+  editItemAction
+} from "./action/actions";
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +21,21 @@ class App extends Component {
   updateInput = event => {
     this.setState({
       newItem: event.target.value
-    });
+    })
+  };
+
+  addItem = () => {
+    const newItem = {
+      id: 1 + Math.random(),
+      value: this.state.newItem
+    };
+
+    this.setState(prevState => ({
+      list: [...prevState.list, newItem],
+      newItem: ""
+    }));
+    this.props.addItemAction(newItem);
+    // console.log(this.props.addItemAction(newItem));
   };
 
   deleteItem = id => {
@@ -25,6 +43,8 @@ class App extends Component {
     const updatedList = list.filter(item => item.id !== id);
 
     this.setState({ list: updatedList });
+    this.props.removeItemAction(id);
+    // console.log(this.props.removeItemAction(id));
   };
 
   editItem = (value, id) => {
@@ -44,19 +64,6 @@ class App extends Component {
     });
   };
 
-  addItem = () => {
-    const newItem = {
-      id: 1 + Math.random(),
-      value: this.state.newItem
-    };
-    console.log(newItem);
-
-    this.setState(prevState => ({
-      list: [...prevState.list, newItem],
-      newItem: ""
-    }));
-  };
-
   render() {
     return (
       <div className="App">
@@ -74,29 +81,27 @@ class App extends Component {
             Add Task
           </button>
           <br />
-          <ul>
-            {this.state.list.map(item => {
-              return (
-                <div key={item.id} className="list">
-                  <input
-                    className="inputTask"
-                    type="text"
-                    id={item.id}
-                    value={item.value}
-                    onChange={e => {
-                      this.editItem(e.target.value, item.id);
-                    }}
-                  />
-                  <button
-                    id="btn-delete"
-                    onClick={() => this.deleteItem(item.id)}
-                  >
-                    X
-                  </button>
-                </div>
-              );
-            })}
-          </ul>
+          {this.state.list.map(item => {
+            return (
+              <div key={item.id} className="list">
+                <input
+                  className="inputTask"
+                  type="text"
+                  id={item.id}
+                  value={item.value}
+                  onChange={e => {
+                    this.editItem(e.target.value, item.id);
+                  }}
+                />
+                <button
+                  id="btn-delete"
+                  onClick={() => this.deleteItem(item.id)}
+                >
+                  X
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
@@ -104,15 +109,11 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addItemAction: item => {
-    dispatch(addItemAction(item));
-  }
+  addItemAction: (item) => dispatch(addItemAction(item)),
+  removeItemAction: (id) => dispatch(removeItemAction(id)),
 });
 
-const mapStateToProps = state => {
-  return {
-    id: state
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
+
+

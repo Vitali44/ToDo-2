@@ -2,16 +2,24 @@ const initialState = {
   items: []
 };
 
-const addItemReducer = (state = initialState, action) => {
+const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_ITEM":
       return {
         ...state,
-        list: [...state.item, action.payload]
+        items: [...state.items, action.payload]
+      };
+    case "REMOVE_ITEM":
+      const removeItems = state.items.filter(
+        item => item !== action.payload
+      );
+      return {
+        ...state,
+        items: removeItems
       };
     default:
       return state;
   }
 };
 
-export default addItemReducer;
+export default itemReducer;
