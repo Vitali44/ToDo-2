@@ -18,12 +18,14 @@ const itemReducer = (state = initialState, action) => {
         items: removeItems
       };
     case "EDIT_ITEM":
-      return state.map(item =>
-        item.id === action.id ? {
-          ...item,
-          value: action.value
-        } : item
-      );
+      return {
+        ...state, items: state.items.map(item =>
+          item.id === action.id ? {
+            ...item,
+            value: action.value
+          } : item
+        )
+      };
     default:
       return state;
   }
