@@ -21,7 +21,7 @@ class App extends Component {
   updateInput = event => {
     this.setState({
       newItem: event.target.value
-    })
+    });
   };
 
   addItem = () => {
@@ -62,6 +62,7 @@ class App extends Component {
     this.setState({
       list: updatedList
     });
+    this.props.editItemAction(value, id);
   };
 
   render() {
@@ -109,11 +110,9 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addItemAction: (item) => dispatch(addItemAction(item)),
-  removeItemAction: (id) => dispatch(removeItemAction(id)),
+  addItemAction: item => dispatch(addItemAction(item)),
+  removeItemAction: id => dispatch(removeItemAction(id)),
+  editItemAction: (value, id) => dispatch(editItemAction(value, id))
 });
 
-
 export default connect(null, mapDispatchToProps)(App);
-
-

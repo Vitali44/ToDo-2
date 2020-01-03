@@ -9,14 +9,21 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.payload]
       };
-    case "REMOVE_ITEM":
+    case "DELETE_ITEM":
       const removeItems = state.items.filter(
-        item => item !== action.payload
+        item => item.id !== action.payload
       );
       return {
         ...state,
         items: removeItems
       };
+    case "EDIT_ITEM":
+      return state.map(item =>
+        item.id === action.id ? {
+          ...item,
+          value: action.value
+        } : item
+      );
     default:
       return state;
   }

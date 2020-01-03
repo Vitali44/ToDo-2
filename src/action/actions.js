@@ -9,16 +9,17 @@ export const addItemAction = (item) => (dispatch) => {
     });
 };
 
-export const removeItemAction = (item) => (dispatch) => {
+export const removeItemAction = (id) => (dispatch) => {
     return dispatch({
         type: DELETE_ITEM,
-        payload: item
+        payload: id
     });
 
 };
-export const editItemAction = (item) => (dispatch) => {
+export const editItemAction = (value, id) => (dispatch) => {
     return dispatch({
         type: EDIT_ITEM,
-        payload: item,
+        value,
+        id
     });
 };
